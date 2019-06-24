@@ -1,5 +1,6 @@
 import React from "react";
 import "./styles.scss";
+import { Link } from "react-router-dom";
 
 class Editor extends React.Component {
   render() {
@@ -56,7 +57,9 @@ class Editor extends React.Component {
         </fieldset>
         <fieldset className="Editor__action">
           <button className="Editor__action-btn save-btn">Guardar</button>
-          <button className="Editor__action-btn cancel-btn">Cancelar</button>
+          <Link to="/">
+            <button className="Editor__action-btn cancel-btn">Cancelar</button>
+          </Link>
         </fieldset>
       </div>
     );
