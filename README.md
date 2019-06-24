@@ -11,7 +11,7 @@ In order to install this project you will need to have it installed on your comp
 
 ## Starting 🚀
 
-1. Clone the repo run: 'git clone https://github.com/Adalab/f-online-pokemon-mirenguerra'.
+1. Clone the repo run: 'git clone https://github.com/Adalab/f-online-life-calendar-mirenguerra'.
 
 2. You can also make Fork and you will copy this repository directly into your GitHub profile.
 
