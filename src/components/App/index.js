@@ -5,19 +5,30 @@ import Editor from "../Editor";
 import { Route, Switch } from "react-router-dom";
 
 class App extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props);
-    this.state={
-      date:'',
-    }
-    this.handleChangeDate=this.handleChangeDate.bind(this);
+    this.state = {
+      date: "",
+      mood: "",
+      isChecked: false
+    };
+    this.handleChangeDate = this.handleChangeDate.bind(this);
+    this.handleChangeMood = this.handleChangeMood.bind(this);
   }
 
-  handleChangeDate(event){
+  handleChangeDate(event) {
     const dateValue = event.currentTarget.value;
     this.setState({
-      date: dateValue,
-    })
+      date: dateValue
+    });
+  }
+
+  handleChangeMood(event) {
+    const moodValue = event.currentTarget.value;
+    this.setState({
+      mood: moodValue,
+      isChecked: !this.state.isChecked
+    });
   }
 
   render() {
@@ -25,7 +36,16 @@ class App extends React.Component {
       <div className="App">
         <Switch>
           <Route exact path="/" render={() => <Calendar />} />
-          <Route path="/editor" render={() => <Editor handleChangeDate={this.handleChangeDate} />} />
+          <Route
+            path="/editor"
+            render={() => (
+              <Editor
+                handleChangeDate={this.handleChangeDate}
+                handleChangeMood={this.handleChangeMood}
+                isChecked={this.state.isChecked}
+              />
+            )}
+          />
         </Switch>
       </div>
     );

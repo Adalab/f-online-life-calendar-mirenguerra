@@ -3,7 +3,7 @@ import "./styles.scss";
 import { Link } from "react-router-dom";
 
 const Editor = props => {
-  const { handleChangeDate } = props;
+  const { handleChangeDate, handleChangeMood } = props;
   return (
     <div className="Editor">
       <fieldset className="Editor__dateInput">
@@ -29,6 +29,7 @@ const Editor = props => {
               type="checkbox"
               value=":)"
               name="smile"
+              onChange={handleChangeMood}
             />
             :)
           </label>
@@ -39,6 +40,7 @@ const Editor = props => {
               type="checkbox"
               value=":("
               name="sad"
+              onChange={handleChangeMood}
             />
             :(
           </label>
