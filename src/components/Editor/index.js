@@ -8,7 +8,8 @@ const Editor = props => {
     handleChangeMood,
     mood,
     handleChangeMessage,
-    handleCancelBtn
+    handleCancelBtn,
+    handleSubmitBtn
   } = props;
   let Editor__message = mood === ":)" ? null : "hidden-message";
 
@@ -69,7 +70,7 @@ const Editor = props => {
         />
       </fieldset>
       <fieldset className="Editor__action">
-        <button className="Editor__action-btn save-btn" type="submit">
+        <button className="Editor__action-btn save-btn" type="submit" onClick={handleSubmitBtn}>
           Guardar
         </button>
 

@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 
 class Calendar extends React.Component {
   render() {
+    const { calendar } = this.props;
     return (
       <div className="Calendar">
         <div className="Calendar__header">
@@ -11,7 +12,17 @@ class Calendar extends React.Component {
             <button className="Calendar__btn">+</button>
           </Link>
         </div>
-        <div className="Calendar__body"> aquí las caras
+        <div className="Calendar__body">
+          <ul className="Calendar__list">
+            {calendar.map((item, i) => {
+              let faceStatus = item === ":)" ? "happy-face" : "sad-face";
+              return (
+                <li key={i} className={`Calendar__item ${faceStatus}`}>
+                  {item}
+                </li>
+              );
+            })}
+          </ul>
         </div>
       </div>
     );

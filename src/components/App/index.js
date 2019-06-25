@@ -8,55 +8,57 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      calendarDay: {
-        date: "",
-        mood: "",
-        message: ""
-      }
+      calendar: JSON.parse(localStorage.getItem("calendar")) || [],
+      date: "",
+      mood: "",
+      message: ""
     };
     this.handleChangeDate = this.handleChangeDate.bind(this);
     this.handleChangeMood = this.handleChangeMood.bind(this);
     this.handleChangeMessage = this.handleChangeMessage.bind(this);
     this.handleCancelBtn = this.handleCancelBtn.bind(this);
+    this.handleSubmitBtn = this.handleSubmitBtn.bind(this);
+  }
+
+  componentDidUpdate(prevState) {
+    if (this.state.calendar !== prevState.calendar) {
+      localStorage.setItem("calendar", JSON.stringify(this.state.calendar));
+    }
+  }
+
+  handleSubmitBtn(event) {
+    event.preventDefault();
+    const newDay = this.state.calendar;
+    newDay.push(this.state.mood)
+    this.setState({ calendar: newDay });
   }
 
   handleChangeDate(event) {
     const dateValue = event.currentTarget.value;
-    this.setState(prevState => {
-      return {
-        ...prevState,
-        date: dateValue
-      };
+    this.setState({
+      date: dateValue
     });
   }
 
   handleChangeMood(event) {
     const moodValue = event.currentTarget.value;
-    this.setState(prevState => {
-      return {
-        ...prevState,
-        mood: moodValue
-      };
+    this.setState({
+      mood: moodValue
     });
   }
 
   handleChangeMessage(event) {
     const messageValue = event.currentTarget.value;
-    this.setState(prevState => {
-      return {
-        ...prevState,
-        message: messageValue
-      };
+    this.setState({
+      message: messageValue
     });
   }
 
   handleCancelBtn() {
     this.setState({
-      calendarDay: {
-        date: "",
-        mood: "",
-        message: ""
-      }
+      date: "",
+      mood: "",
+      message: ""
     });
   }
 
@@ -64,7 +66,11 @@ class App extends React.Component {
     return (
       <div className="App">
         <Switch>
-          <Route exact path="/" render={() => <Calendar />} />
+          <Route
+            exact
+            path="/"
+            render={() => <Calendar calendar={this.state.calendar} />}
+          />
           <Route
             path="/editor"
             render={() => (
@@ -73,6 +79,7 @@ class App extends React.Component {
                 handleChangeMood={this.handleChangeMood}
                 handleChangeMessage={this.handleChangeMessage}
                 handleCancelBtn={this.handleCancelBtn}
+                handleSubmitBtn={this.handleSubmitBtn}
                 mood={this.state.mood}
               />
             )}
