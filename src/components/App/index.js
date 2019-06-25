@@ -15,6 +15,7 @@ class App extends React.Component {
     this.handleChangeDate = this.handleChangeDate.bind(this);
     this.handleChangeMood = this.handleChangeMood.bind(this);
     this.handleChangeMessage = this.handleChangeMessage.bind(this);
+    this.handleCancelBtn = this.handleCancelBtn.bind(this);
   }
 
   handleChangeDate(event) {
@@ -38,11 +39,23 @@ class App extends React.Component {
     });
   }
 
+  handleCancelBtn(){
+    this.setState({
+      date: "",
+      mood: "",
+      message: ""
+    })
+  }
+
   render() {
     return (
       <div className="App">
         <Switch>
-          <Route exact path="/" render={() => <Calendar />} />
+          <Route
+            exact
+            path="/"
+            render={() => <Calendar />}
+          />
           <Route
             path="/editor"
             render={() => (
@@ -50,6 +63,7 @@ class App extends React.Component {
                 handleChangeDate={this.handleChangeDate}
                 handleChangeMood={this.handleChangeMood}
                 handleChangeMessage={this.handleChangeMessage}
+                handleCancelBtn={this.handleCancelBtn}
                 mood={this.state.mood}
               />
             )}
