@@ -3,7 +3,12 @@ import "./styles.scss";
 import { Link } from "react-router-dom";
 
 const Editor = props => {
-  const { handleChangeDate, handleChangeMood, mood } = props;
+  const {
+    handleChangeDate,
+    handleChangeMood,
+    mood,
+    handleChangeMessage
+  } = props;
   let Editor__message = mood === ":)" ? null : "hidden-message";
 
   return (
@@ -58,6 +63,7 @@ const Editor = props => {
           id="message"
           name="message"
           placeholder="¿Por qué es un buen día?"
+          onChange={handleChangeMessage}
         />
       </fieldset>
       <fieldset className="Editor__action">
