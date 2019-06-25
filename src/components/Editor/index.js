@@ -3,7 +3,9 @@ import "./styles.scss";
 import { Link } from "react-router-dom";
 
 const Editor = props => {
-  const { handleChangeDate } = props;
+  const { handleChangeDate, handleChangeMood, mood } = props;
+  let Editor__message = mood === ":)" ? null : "hidden-message";
+
   return (
     <div className="Editor">
       <fieldset className="Editor__dateInput">
@@ -26,9 +28,10 @@ const Editor = props => {
             <input
               className="Editor__mood-smiley"
               id="smile"
-              type="checkbox"
+              type="radio"
               value=":)"
-              name="smile"
+              name="mood"
+              onChange={handleChangeMood}
             />
             :)
           </label>
@@ -36,15 +39,16 @@ const Editor = props => {
             <input
               className="Editor__mood-sad"
               id="sad"
-              type="checkbox"
+              type="radio"
               value=":("
-              name="sad"
+              name="mood"
+              onChange={handleChangeMood}
             />
             :(
           </label>
         </div>
       </fieldset>
-      <fieldset className="Editor__message">
+      <fieldset className={Editor__message}>
         <label className="Editor__message-label" htmlFor="message">
           Mensaje
         </label>
