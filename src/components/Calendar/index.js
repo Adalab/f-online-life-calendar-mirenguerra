@@ -11,7 +11,8 @@ class Calendar extends React.Component {
             <button className="Calendar__btn">+</button>
           </Link>
         </div>
-        <div className="Calendar__body">:)</div>
+        <div className="Calendar__body"> aquí las caras
+        </div>
       </div>
     );
   }

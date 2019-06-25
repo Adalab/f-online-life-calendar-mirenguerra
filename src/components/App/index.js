@@ -8,54 +8,52 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      date: "",
-      mood: "",
-      message: ""
+      calendarDay: {
+        date: "",
+        mood: "",
+        message: ""
+      }
     };
     this.handleChangeDate = this.handleChangeDate.bind(this);
     this.handleChangeMood = this.handleChangeMood.bind(this);
     this.handleChangeMessage = this.handleChangeMessage.bind(this);
-    this.handleCancelBtn = this.handleCancelBtn.bind(this);
   }
 
   handleChangeDate(event) {
     const dateValue = event.currentTarget.value;
-    this.setState({
-      date: dateValue
+    this.setState(prevState => {
+      return {
+        ...prevState,
+        date: dateValue
+      };
     });
   }
 
   handleChangeMood(event) {
     const moodValue = event.currentTarget.value;
-    this.setState({
-      mood: moodValue
+    this.setState(prevState => {
+      return {
+        ...prevState,
+        mood: moodValue
+      };
     });
   }
 
   handleChangeMessage(event) {
     const messageValue = event.currentTarget.value;
-    this.setState({
-      message: messageValue
+    this.setState(prevState => {
+      return {
+        ...prevState,
+        message: messageValue
+      };
     });
-  }
-
-  handleCancelBtn(){
-    this.setState({
-      date: "",
-      mood: "",
-      message: ""
-    })
   }
 
   render() {
     return (
       <div className="App">
         <Switch>
-          <Route
-            exact
-            path="/"
-            render={() => <Calendar />}
-          />
+          <Route exact path="/" render={() => <Calendar />} />
           <Route
             path="/editor"
             render={() => (
