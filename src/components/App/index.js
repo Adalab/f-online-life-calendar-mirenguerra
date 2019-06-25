@@ -10,10 +10,11 @@ class App extends React.Component {
     this.state = {
       date: "",
       mood: "",
-      // checked: false,
+      message: ""
     };
     this.handleChangeDate = this.handleChangeDate.bind(this);
     this.handleChangeMood = this.handleChangeMood.bind(this);
+    this.handleChangeMessage = this.handleChangeMessage.bind(this);
   }
 
   handleChangeDate(event) {
@@ -26,8 +27,14 @@ class App extends React.Component {
   handleChangeMood(event) {
     const moodValue = event.currentTarget.value;
     this.setState({
-      mood: moodValue,
-      // checked:!this.state.checked,
+      mood: moodValue
+    });
+  }
+
+  handleChangeMessage(event) {
+    const messageValue = event.currentTarget.value;
+    this.setState({
+      message: messageValue
     });
   }
 
@@ -42,8 +49,8 @@ class App extends React.Component {
               <Editor
                 handleChangeDate={this.handleChangeDate}
                 handleChangeMood={this.handleChangeMood}
+                handleChangeMessage={this.handleChangeMessage}
                 mood={this.state.mood}
-                // checked={this.state.checked}
               />
             )}
           />
