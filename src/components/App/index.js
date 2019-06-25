@@ -17,6 +17,7 @@ class App extends React.Component {
     this.handleChangeDate = this.handleChangeDate.bind(this);
     this.handleChangeMood = this.handleChangeMood.bind(this);
     this.handleChangeMessage = this.handleChangeMessage.bind(this);
+    this.handleCancelBtn = this.handleCancelBtn.bind(this);
   }
 
   handleChangeDate(event) {
@@ -46,6 +47,16 @@ class App extends React.Component {
         ...prevState,
         message: messageValue
       };
+    });
+  }
+
+  handleCancelBtn() {
+    this.setState({
+      calendarDay: {
+        date: "",
+        mood: "",
+        message: ""
+      }
     });
   }
 
