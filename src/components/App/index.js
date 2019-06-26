@@ -82,7 +82,6 @@ class App extends React.Component {
                 handleSubmitBtn={this.handleSubmitBtn}
                 mood={this.state.mood}
                 date={this.state.date}
-                message={this.state.message}
               />
             )}
           />

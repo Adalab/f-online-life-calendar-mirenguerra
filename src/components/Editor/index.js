@@ -8,11 +8,11 @@ const Editor = props => {
     handleChangeMood,
     mood,
     date,
-    message,
     handleChangeMessage,
     handleCancelBtn,
     handleSubmitBtn
   } = props;
+
   let Editor__message = mood === ":)" ? null : "hidden-message";
 
   return (
@@ -42,6 +42,7 @@ const Editor = props => {
               value=":)"
               name="mood"
               onChange={handleChangeMood}
+              required
             />
             :)
           </label>
@@ -53,11 +54,13 @@ const Editor = props => {
               value=":("
               name="mood"
               onChange={handleChangeMood}
+              required
             />
             :(
           </label>
         </div>
       </fieldset>
+
       <fieldset className={Editor__message}>
         <label className="Editor__message-label" htmlFor="message">
           Mensaje
@@ -69,11 +72,10 @@ const Editor = props => {
           name="message"
           placeholder="¿Por qué es un buen día?"
           onChange={handleChangeMessage}
-          required
         />
       </fieldset>
       <fieldset className="Editor__action">
-        {!date || mood || !message ? (
+        {!date || !mood ? (
           <button className="Editor__action-btn save-btn">Guardar</button>
         ) : (
           <Link to="/">
