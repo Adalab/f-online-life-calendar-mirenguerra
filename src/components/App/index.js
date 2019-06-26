@@ -26,12 +26,11 @@ class App extends React.Component {
     }
   }
 
-  handleSubmitBtn(event) {
-    event.preventDefault();
+  handleSubmitBtn() {
     const newDay = this.state.calendar;
-    newDay.push(this.state.mood)
+    newDay.push([{date:this.state.date},{mood:this.state.mood},{message:this.state.message}])
     this.setState({ calendar: newDay });
-    window.location.href = "/";
+    // window.location.href = "/";
   }
 
   handleChangeDate(event) {
