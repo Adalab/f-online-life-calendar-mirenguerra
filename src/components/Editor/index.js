@@ -70,19 +70,20 @@ const Editor = props => {
         />
       </fieldset>
       <fieldset className="Editor__action">
-        <button className="Editor__action-btn save-btn" type="submit" onClick={handleSubmitBtn}>
+        <button
+          className="Editor__action-btn save-btn"
+          type="submit"
+          onClick={handleSubmitBtn}
+        >
           Guardar
         </button>
-
-        <button
-          className="Editor__action-btn cancel-btn"
-          onClick={handleCancelBtn}
-        >
-          Cancelar
-        </button>
-
         <Link to="/">
-          <button className="Editor__action-btn back-btn">Volver</button>
+          <button
+            className="Editor__action-btn cancel-btn"
+            onClick={handleCancelBtn}
+          >
+            Cancelar
+          </button>
         </Link>
       </fieldset>
     </form>
