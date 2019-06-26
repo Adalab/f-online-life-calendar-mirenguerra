@@ -31,6 +31,7 @@ class App extends React.Component {
     const newDay = this.state.calendar;
     newDay.push(this.state.mood)
     this.setState({ calendar: newDay });
+    window.location.href = "/";
   }
 
   handleChangeDate(event) {
