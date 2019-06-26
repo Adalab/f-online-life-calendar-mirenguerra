@@ -7,6 +7,8 @@ const Editor = props => {
     handleChangeDate,
     handleChangeMood,
     mood,
+    date,
+    message,
     handleChangeMessage,
     handleCancelBtn,
     handleSubmitBtn
@@ -67,18 +69,23 @@ const Editor = props => {
           name="message"
           placeholder="¿Por qué es un buen día?"
           onChange={handleChangeMessage}
+          required
         />
       </fieldset>
       <fieldset className="Editor__action">
-        <Link to="/">
-          <button
-            className="Editor__action-btn save-btn"
-            type="submit"
-            onClick={handleSubmitBtn}
-          >
-            Guardar
-          </button>
-        </Link>
+        {!date || mood || !message ? (
+          <button className="Editor__action-btn save-btn">Guardar</button>
+        ) : (
+          <Link to="/">
+            <button
+              className="Editor__action-btn save-btn"
+              type="submit"
+              onClick={handleSubmitBtn}
+            >
+              Guardar
+            </button>
+          </Link>
+        )}
         <Link to="/">
           <button
             className="Editor__action-btn cancel-btn"
