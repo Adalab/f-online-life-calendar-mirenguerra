@@ -7,12 +7,11 @@ class Calendar extends React.Component {
     const { calendar } = this.props;
     return (
       <div className="Calendar">
-        <div className="Calendar__header">
+        <div className="Calendar__wrapper">
           <Link to="/editor">
             <button className="Calendar__btn">+</button>
           </Link>
-        </div>
-        <div className="Calendar__body">
+
           <ul className="Calendar__list">
             {calendar.map((item, i) => {
               let faceStatus = item === ":)" ? "happy-face" : "sad-face";
