@@ -8,6 +8,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      calendar: JSON.parse(localStorage.getItem("calendar")) || [],
       date: "",
       mood: "",
       message: ""
@@ -15,6 +16,21 @@ class App extends React.Component {
     this.handleChangeDate = this.handleChangeDate.bind(this);
     this.handleChangeMood = this.handleChangeMood.bind(this);
     this.handleChangeMessage = this.handleChangeMessage.bind(this);
+    this.handleCancelBtn = this.handleCancelBtn.bind(this);
+    this.handleSubmitBtn = this.handleSubmitBtn.bind(this);
+  }
+
+  componentDidUpdate(prevState) {
+    if (this.state.calendar !== prevState.calendar) {
+      localStorage.setItem("calendar", JSON.stringify(this.state.calendar));
+    }
+  }
+
+  handleSubmitBtn(event) {
+    event.preventDefault();
+    const newDay = this.state.calendar;
+    newDay.push(this.state.mood)
+    this.setState({ calendar: newDay });
   }
 
   handleChangeDate(event) {
@@ -38,11 +54,23 @@ class App extends React.Component {
     });
   }
 
+  handleCancelBtn() {
+    this.setState({
+      date: "",
+      mood: "",
+      message: ""
+    });
+  }
+
   render() {
     return (
       <div className="App">
         <Switch>
-          <Route exact path="/" render={() => <Calendar />} />
+          <Route
+            exact
+            path="/"
+            render={() => <Calendar calendar={this.state.calendar} />}
+          />
           <Route
             path="/editor"
             render={() => (
@@ -50,6 +78,8 @@ class App extends React.Component {
                 handleChangeDate={this.handleChangeDate}
                 handleChangeMood={this.handleChangeMood}
                 handleChangeMessage={this.handleChangeMessage}
+                handleCancelBtn={this.handleCancelBtn}
+                handleSubmitBtn={this.handleSubmitBtn}
                 mood={this.state.mood}
               />
             )}
