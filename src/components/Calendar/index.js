@@ -14,19 +14,19 @@ class Calendar extends React.Component {
             </button>
           </Link>
 
-          <ul className="Calendar__list tooltip top">
+          <ul className="Calendar__list">
             {calendar.map((item, i) => {
               let faceStatus =
                 item[1].mood === ":)" ? "happy-face" : "sad-face";
               return (
-                <React.Fragment>
-                  <li key={i} className={`Calendar__item ${faceStatus}`}>
+                <div className="tooltip" key={i} >
+                  <li className={`Calendar__item ${faceStatus}`}>
                     {item[1].mood}
                   </li>
-                  <span class="tiptext">{`${item[0].date} ${
+                  <span className="tiptext">{`${item[0].date} ${
                     item[2].message
                   }`}</span>
-                </React.Fragment>
+                </div>
               );
             })}
           </ul>
