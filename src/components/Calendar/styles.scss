@@ -3,7 +3,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-image: url('../../images/smilies.jpg');
+  background-image: url("../../images/smilies.jpg");
   background-size: cover;
   height: 100vh;
 }
@@ -15,6 +15,7 @@
   height: 500px;
   background-color: #fff;
   box-shadow: 0px 0px 10px 2px #9b9b9b;
+  overflow-y: auto;
 
   @media all and (min-width: 768px) {
     width: 500px;
@@ -32,7 +33,7 @@
   border: none;
   cursor: pointer;
   &:hover {
-    background-color: #45abe6;
+    background-color: darken(#3f9bd1, 15%);
   }
 }
 
