@@ -16,7 +16,7 @@ class App extends React.Component {
     this.handleChangeDate = this.handleChangeDate.bind(this);
     this.handleChangeMood = this.handleChangeMood.bind(this);
     this.handleChangeMessage = this.handleChangeMessage.bind(this);
-    this.handleCancelBtn = this.handleCancelBtn.bind(this);
+    this.handleClearClick = this.handleClearClick.bind(this);
     this.handleSubmitBtn = this.handleSubmitBtn.bind(this);
   }
 
@@ -30,7 +30,6 @@ class App extends React.Component {
     const newDay = this.state.calendar;
     newDay.push([{date:this.state.date},{mood:this.state.mood},{message:this.state.message}])
     this.setState({ calendar: newDay });
-    // window.location.href = "/";
   }
 
   handleChangeDate(event) {
@@ -54,7 +53,7 @@ class App extends React.Component {
     });
   }
 
-  handleCancelBtn() {
+  handleClearClick(){
     this.setState({
       date: "",
       mood: "",
@@ -69,7 +68,7 @@ class App extends React.Component {
           <Route
             exact
             path="/"
-            render={() => <Calendar calendar={this.state.calendar} />}
+            render={() => <Calendar calendar={this.state.calendar} handleClearClick={this.handleClearClick} />}
           />
           <Route
             path="/editor"
@@ -78,10 +77,11 @@ class App extends React.Component {
                 handleChangeDate={this.handleChangeDate}
                 handleChangeMood={this.handleChangeMood}
                 handleChangeMessage={this.handleChangeMessage}
-                handleCancelBtn={this.handleCancelBtn}
+                handleClearClick={this.handleClearClick}
                 handleSubmitBtn={this.handleSubmitBtn}
                 mood={this.state.mood}
                 date={this.state.date}
+                message={this.state.message}
               />
             )}
           />
