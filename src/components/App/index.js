@@ -1,5 +1,4 @@
 import React from "react";
-import "./styles.scss";
 import Calendar from "../Calendar/index";
 import Editor from "../Editor";
 import { Route, Switch } from "react-router-dom";
