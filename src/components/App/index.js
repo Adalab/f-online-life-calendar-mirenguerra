@@ -28,7 +28,11 @@ class App extends React.Component {
 
   handleSubmitBtn() {
     const newDay = this.state.calendar;
-    newDay.push([{date:this.state.date},{mood:this.state.mood},{message:this.state.message}])
+    newDay.push([
+      { date: this.state.date },
+      { mood: this.state.mood },
+      { message: this.state.message }
+    ]);
     this.setState({ calendar: newDay });
   }
 
@@ -53,7 +57,7 @@ class App extends React.Component {
     });
   }
 
-  handleClearClick(){
+  handleClearClick() {
     this.setState({
       date: "",
       mood: "",
@@ -68,7 +72,12 @@ class App extends React.Component {
           <Route
             exact
             path="/"
-            render={() => <Calendar calendar={this.state.calendar} handleClearClick={this.handleClearClick} />}
+            render={() => (
+              <Calendar
+                calendar={this.state.calendar}
+                handleClearClick={this.handleClearClick}
+              />
+            )}
           />
           <Route
             path="/editor"
@@ -81,7 +90,6 @@ class App extends React.Component {
                 handleSubmitBtn={this.handleSubmitBtn}
                 mood={this.state.mood}
                 date={this.state.date}
-                message={this.state.message}
               />
             )}
           />

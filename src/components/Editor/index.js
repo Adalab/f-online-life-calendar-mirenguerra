@@ -8,7 +8,6 @@ const Editor = props => {
     handleChangeMood,
     mood,
     date,
-    message,
     handleChangeMessage,
     handleClearClick,
     handleSubmitBtn
@@ -59,21 +58,21 @@ const Editor = props => {
           </label>
         </div>
       </fieldset>
-      {mood===':)' ?
-      <fieldset className="Editor__message">
-        <label className="Editor__message-label" htmlFor="message">
-          Mensaje
-        </label>
-        <input
-          className="Editor__message-input"
-          type="text"
-          id="message"
-          name="message"
-          placeholder="¿Por qué es un buen día?"
-          onChange={handleChangeMessage}
-          required
-        />
-      </fieldset> : null}
+      {mood === ":)" ? (
+        <fieldset className="Editor__message">
+          <label className="Editor__message-label" htmlFor="message">
+            Mensaje
+          </label>
+          <input
+            className="Editor__message-input"
+            type="text"
+            id="message"
+            name="message"
+            placeholder="¿Por qué es un buen día?"
+            onChange={handleChangeMessage}
+          />
+        </fieldset>
+      ) : null}
       <fieldset className="Editor__action">
         {!date || !mood ? (
           <button className="Editor__action-btn save-btn">Guardar</button>

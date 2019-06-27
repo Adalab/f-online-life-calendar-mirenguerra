@@ -9,12 +9,15 @@ class Calendar extends React.Component {
       <div className="Calendar">
         <div className="Calendar__wrapper">
           <Link to="/editor">
-            <button className="Calendar__btn" onClick={handleClearClick}>+</button>
+            <button className="Calendar__btn" onClick={handleClearClick}>
+              +
+            </button>
           </Link>
 
           <ul className="Calendar__list">
             {calendar.map((item, i) => {
-              let faceStatus = item[1].mood === ":)" ? "happy-face" : "sad-face";
+              let faceStatus =
+                item[1].mood === ":)" ? "happy-face" : "sad-face";
               return (
                 <li key={i} className={`Calendar__item ${faceStatus}`}>
                   {item[1].mood}
