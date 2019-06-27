@@ -9,11 +9,9 @@ const Editor = props => {
     mood,
     date,
     handleChangeMessage,
-    handleCancelBtn,
+    handleClearClick,
     handleSubmitBtn
   } = props;
-
-  let Editor__message = mood === ":)" ? null : "hidden-message";
 
   return (
     <form className="Editor">
@@ -60,20 +58,21 @@ const Editor = props => {
           </label>
         </div>
       </fieldset>
-
-      <fieldset className={Editor__message}>
-        <label className="Editor__message-label" htmlFor="message">
-          Mensaje
-        </label>
-        <input
-          className="Editor__message-input"
-          type="text"
-          id="message"
-          name="message"
-          placeholder="¿Por qué es un buen día?"
-          onChange={handleChangeMessage}
-        />
-      </fieldset>
+      {mood === ":)" ? (
+        <fieldset className="Editor__message">
+          <label className="Editor__message-label" htmlFor="message">
+            Mensaje
+          </label>
+          <input
+            className="Editor__message-input"
+            type="text"
+            id="message"
+            name="message"
+            placeholder="¿Por qué es un buen día?"
+            onChange={handleChangeMessage}
+          />
+        </fieldset>
+      ) : null}
       <fieldset className="Editor__action">
         {!date || !mood ? (
           <button className="Editor__action-btn save-btn">Guardar</button>
@@ -91,7 +90,7 @@ const Editor = props => {
         <Link to="/">
           <button
             className="Editor__action-btn cancel-btn"
-            onClick={handleCancelBtn}
+            onClick={handleClearClick}
           >
             Cancelar
           </button>
