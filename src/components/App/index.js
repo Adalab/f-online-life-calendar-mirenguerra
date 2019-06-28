@@ -28,18 +28,26 @@ class App extends React.Component {
   handleSubmitBtn() {
     const newDay = this.state.calendar;
     newDay.push({
-        date: this.state.date,
-        mood: this.state.mood,
-        message: this.state.message
-      });
+      date: this.state.date,
+      mood: this.state.mood,
+      message: this.state.message
+    });
     this.setState({ calendar: newDay });
   }
 
   handleChangeDate(event) {
     const dateValue = event.currentTarget.value;
-    this.setState({
-      date: dateValue
+    const { calendar } = this.state;
+    const selectedDate = calendar.find(function(selected) {
+      return selected.date === dateValue;
     });
+    if (selectedDate) {
+      return alert('Esa fecha ya tiene un estado.Elige otra')
+    } else {
+      this.setState({
+        date: dateValue
+      });
+    }
   }
 
   handleChangeMood(event) {
