@@ -42,7 +42,7 @@ class App extends React.Component {
       return selected.date === dateValue;
     });
     if (selectedDate) {
-      return alert(`La fecha ${dateValue} no está disponible, ya tiene un estado asignado. Elige otra`)
+      return alert(`La fecha ${dateValue} no está disponible, ya tiene un estado asignado. Elige otra.`)
     } else {
       this.setState({
         date: dateValue
