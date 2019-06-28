@@ -15,20 +15,27 @@ class Calendar extends React.Component {
           </Link>
 
           <ul className="Calendar__list">
-            {calendar.map((item, i) => {
-              let faceStatus =
-                item.mood === ":)" ? "happy-face" : "sad-face";
-              return (
-                <div className="tooltip" key={i} >
-                  <li className={`Calendar__item ${faceStatus}`}>
-                    {item.mood}
-                  </li>
-                  <span className="tiptext">{`${item.date} ${
-                    item.message
-                  }`}</span>
-                </div>
-              );
-            })}
+            {calendar
+              .sort(function(a, b) {
+                if (a.date > b.date) {
+                  return 1;
+                } else {
+                  return -1;
+                }
+              })
+              .map((item, i) => {
+                let faceStatus = item.mood === ":)" ? "happy-face" : "sad-face";
+                return (
+                  <div className="tooltip" key={i}>
+                    <li className={`Calendar__item ${faceStatus}`}>
+                      {item.mood}
+                    </li>
+                    <span className="tiptext">{`${item.date} ${
+                      item.message
+                    }`}</span>
+                  </div>
+                );
+              })}
           </ul>
         </div>
       </div>
