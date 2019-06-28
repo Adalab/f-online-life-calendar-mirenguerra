@@ -17,14 +17,14 @@ class Calendar extends React.Component {
           <ul className="Calendar__list">
             {calendar.map((item, i) => {
               let faceStatus =
-                item[1].mood === ":)" ? "happy-face" : "sad-face";
+                item.mood === ":)" ? "happy-face" : "sad-face";
               return (
                 <div className="tooltip" key={i} >
                   <li className={`Calendar__item ${faceStatus}`}>
-                    {item[1].mood}
+                    {item.mood}
                   </li>
-                  <span className="tiptext">{`${item[0].date} ${
-                    item[2].message
+                  <span className="tiptext">{`${item.date} ${
+                    item.message
                   }`}</span>
                 </div>
               );

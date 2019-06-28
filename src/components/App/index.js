@@ -27,11 +27,11 @@ class App extends React.Component {
 
   handleSubmitBtn() {
     const newDay = this.state.calendar;
-    newDay.push([
-      { date: this.state.date },
-      { mood: this.state.mood },
-      { message: this.state.message }
-    ]);
+    newDay.push({
+        date: this.state.date,
+        mood: this.state.mood,
+        message: this.state.message
+      });
     this.setState({ calendar: newDay });
   }
 
