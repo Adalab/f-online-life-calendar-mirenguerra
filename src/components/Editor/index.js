@@ -81,7 +81,7 @@ const Editor = props => {
 
         <fieldset className="Editor__action">
           {selectedMood.errorMessage ? (
-            <p>Esa fecha ya tiene un estado asignado.</p>
+            <p className="Editor__action-error">Esa fecha ya tiene un estado asignado. Elige otra fecha.</p>
           ) : (
             <Link to="/">
               <button

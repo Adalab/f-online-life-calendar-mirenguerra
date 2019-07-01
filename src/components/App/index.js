@@ -86,7 +86,8 @@ class App extends React.Component {
     this.setState({
       date: "",
       mood: ":)",
-      message: ""
+      message: "",
+      errorMessage: false
     });
   }
 
