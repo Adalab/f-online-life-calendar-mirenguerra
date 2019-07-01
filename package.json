@@ -2,6 +2,7 @@
   "name": "f-online-life-calendar-mirenguerra",
   "version": "0.1.0",
   "private": true,
+  "homepage": "./",
   "dependencies": {
     "moment": "^2.24.0",
     "node-sass": "^4.12.0",
