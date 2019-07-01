@@ -7,10 +7,13 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      calendar: JSON.parse(localStorage.getItem("calendar")) || [],
-      date: "",
-      mood: "",
-      message: ""
+      savedMoods: JSON.parse(localStorage.getItem("savedMoods")) || [],
+      selectedMood: {
+        date: "",
+        mood: ":)",
+        message: "",
+        errorMessage: false
+      }
     };
     this.handleChangeDate = this.handleChangeDate.bind(this);
     this.handleChangeMood = this.handleChangeMood.bind(this);
@@ -20,47 +23,71 @@ class App extends React.Component {
   }
 
   componentDidUpdate(prevState) {
-    if (this.state.calendar !== prevState.calendar) {
-      localStorage.setItem("calendar", JSON.stringify(this.state.calendar));
+    if (this.state.savedMoods !== prevState.savedMoods) {
+      localStorage.setItem("savedMoods", JSON.stringify(this.state.savedMoods));
     }
   }
 
   handleSubmitBtn() {
-    const newDay = this.state.calendar;
-    newDay.push({
-        date: this.state.date,
-        mood: this.state.mood,
-        message: this.state.message
-      });
-    this.setState({ calendar: newDay });
+    const newDay = this.state.savedMoods;
+    newDay.push(this.state.selectedMood);
+    this.setState({ savedMoods: newDay });
   }
 
   handleChangeDate(event) {
     const dateValue = event.currentTarget.value;
-    this.setState({
-      date: dateValue
+    const { savedMoods } = this.state;
+    const selectedDate = savedMoods.find(function(selected) {
+      return selected.date === dateValue;
     });
+    if (selectedDate) {
+      selectedDate.errorMessage = true;
+      this.setState({
+        selectedMood: selectedDate
+      });
+    } else {
+      this.setState(prevState => {
+        return {
+          selectedMood: {
+            ...prevState.selectedMood,
+            date: dateValue,
+            errorMessage: false,
+          }
+        };
+      });
+    }
   }
 
   handleChangeMood(event) {
     const moodValue = event.currentTarget.value;
-    this.setState({
-      mood: moodValue
+    this.setState(prevState => {
+      return {
+        selectedMood: {
+          ...prevState.selectedMood,
+          mood: moodValue
+        }
+      };
     });
   }
 
   handleChangeMessage(event) {
     const messageValue = event.currentTarget.value;
-    this.setState({
-      message: messageValue
+    this.setState(prevState => {
+      return {
+        selectedMood: {
+          ...prevState.selectedMood,
+          message: messageValue
+        }
+      };
     });
   }
 
   handleClearClick() {
     this.setState({
       date: "",
-      mood: "",
-      message: ""
+      mood: ":)",
+      message: "",
+      errorMessage: false
     });
   }
 
@@ -73,7 +100,7 @@ class App extends React.Component {
             path="/"
             render={() => (
               <Calendar
-                calendar={this.state.calendar}
+                savedMoods={this.state.savedMoods}
                 handleClearClick={this.handleClearClick}
               />
             )}
@@ -87,8 +114,7 @@ class App extends React.Component {
                 handleChangeMessage={this.handleChangeMessage}
                 handleClearClick={this.handleClearClick}
                 handleSubmitBtn={this.handleSubmitBtn}
-                mood={this.state.mood}
-                date={this.state.date}
+                selectedMood={this.state.selectedMood}
               />
             )}
           />
