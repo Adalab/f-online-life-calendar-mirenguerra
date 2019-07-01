@@ -46,14 +46,13 @@ class App extends React.Component {
         selectedMood: selectedDate
       });
     } else {
-      this.setState(prevState => {
-        return {
-          selectedMood: {
-            ...prevState.selectedMood,
-            date: dateValue,
-            errorMessage: false,
-          }
-        };
+      this.setState({
+        selectedMood: {
+          date: dateValue,
+          mood: ":)",
+          message: "",
+          errorMessage: false
+        }
       });
     }
   }
