@@ -1,7 +1,6 @@
 import React from "react";
 import "./styles.scss";
 import { Link } from "react-router-dom";
-import moment from 'moment';
 
 const Editor = props => {
   const {
@@ -12,7 +11,6 @@ const Editor = props => {
     handleSubmitBtn,
     selectedMood
   } = props;
-  let today = moment().format('YYYY-MM-DD')
 
   return (
     <form className="Editor">
@@ -28,8 +26,6 @@ const Editor = props => {
             id="date"
             name="date"
             onChange={handleChangeDate}
-            min={today}
-            max={today}
             required
           />
         </fieldset>
