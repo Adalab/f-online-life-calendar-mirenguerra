@@ -10,7 +10,8 @@ class App extends React.Component {
       calendar: JSON.parse(localStorage.getItem("calendar")) || [],
       date: "",
       mood: "",
-      message: ""
+      message: "",
+      selectedMood: {}
     };
     this.handleChangeDate = this.handleChangeDate.bind(this);
     this.handleChangeMood = this.handleChangeMood.bind(this);
@@ -27,19 +28,32 @@ class App extends React.Component {
 
   handleSubmitBtn() {
     const newDay = this.state.calendar;
-    newDay.push([
-      { date: this.state.date },
-      { mood: this.state.mood },
-      { message: this.state.message }
-    ]);
+    newDay.push({
+      date: this.state.date,
+      mood: this.state.mood,
+      message: this.state.message
+    });
     this.setState({ calendar: newDay });
   }
-  
+
   handleChangeDate(event) {
     const dateValue = event.currentTarget.value;
-    this.setState({
-      date: dateValue
+    const { calendar } = this.state;
+    const selectedDate = calendar.find(function(selected) {
+      return selected.date === dateValue;
     });
+    if (selectedDate) {
+      alert(
+        `La fecha ${dateValue} no está disponible, ya tiene un estado asignado. Elige otra.`
+      );
+      this.setState({
+        selectedMood: selectedDate
+      });
+    } else {
+      this.setState({
+        date: dateValue
+      });
+    }
   }
 
   handleChangeMood(event) {
@@ -89,6 +103,7 @@ class App extends React.Component {
                 handleSubmitBtn={this.handleSubmitBtn}
                 mood={this.state.mood}
                 date={this.state.date}
+                selectedMood={this.state.selectedMood}
               />
             )}
           />

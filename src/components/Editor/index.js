@@ -1,6 +1,7 @@
 import React from "react";
 import "./styles.scss";
 import { Link } from "react-router-dom";
+// import moment from 'moment';
 
 const Editor = props => {
   const {
@@ -11,7 +12,9 @@ const Editor = props => {
     handleChangeMessage,
     handleClearClick,
     handleSubmitBtn
+    // selectedMood
   } = props;
+  // let today = moment().format('YYYY-MM-DD')
 
   return (
     <form className="Editor">
@@ -20,16 +23,33 @@ const Editor = props => {
           <label className="Editor__dateInput-label" htmlFor="date">
             Fecha
           </label>
+          {/* {selectedMood ? (
+<input
+className="Editor__dateInput-input input"
+type="date"
+id="date"
+name="date"
+onChange={handleChangeDate}
+// min={today}
+// max={today}
+value={selectedMood.date}
+required
+/>
+) : ( */}
           <input
             className="Editor__dateInput-input input"
             type="date"
             id="date"
             name="date"
-            placeholder="24/06/2019"
             onChange={handleChangeDate}
+            // min={today}
+            // max={today}
+            disable="2019-06-06"
             required
           />
+          {/* )} */}
         </fieldset>
+
         <fieldset className="Editor__mood">
           <label className="Editor__mood-label">¿Cómo es tu día?</label>
           <div className="Editor__mood-inputs">
@@ -59,12 +79,23 @@ const Editor = props => {
             </label>
           </div>
         </fieldset>
+
         {mood === ":)" ? (
           <fieldset className="Editor__message">
             <label className="Editor__message-label" htmlFor="message">
               Mensaje{" "}
               <span className="Editor__message-optional">(opcional)</span>
             </label>
+            {/* {selectedMood ? (
+<input
+className="Editor__message-input input"
+type="text"
+id="message"
+name="message"
+value={selectedMood.message}
+onChange={handleChangeMessage}
+/>
+) : ( */}
             <input
               className="Editor__message-input input"
               type="text"
@@ -73,8 +104,10 @@ const Editor = props => {
               placeholder="¿Por qué es un buen día?"
               onChange={handleChangeMessage}
             />
+            {/* )} */}
           </fieldset>
         ) : null}
+
         <fieldset className="Editor__action">
           {!date || !mood ? (
             <button className="Editor__action-btn save-btn">Guardar</button>
