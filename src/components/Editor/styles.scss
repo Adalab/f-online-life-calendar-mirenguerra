@@ -5,7 +5,7 @@ fieldset {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 15px;
+  margin: 10px 15px;
 }
 
 label {
@@ -98,4 +98,11 @@ label {
       width: 100%;
     }
   }
+}
+
+.Editor__action-error {
+  color: $color-fire;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 10px;
 }

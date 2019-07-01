@@ -6,11 +6,10 @@ const Editor = props => {
   const {
     handleChangeDate,
     handleChangeMood,
-    mood,
-    date,
     handleChangeMessage,
     handleClearClick,
-    handleSubmitBtn
+    handleSubmitBtn,
+    selectedMood
   } = props;
 
   return (
@@ -20,16 +19,17 @@ const Editor = props => {
           <label className="Editor__dateInput-label" htmlFor="date">
             Fecha
           </label>
+    
           <input
             className="Editor__dateInput-input input"
             type="date"
             id="date"
             name="date"
-            placeholder="24/06/2019"
             onChange={handleChangeDate}
             required
           />
         </fieldset>
+
         <fieldset className="Editor__mood">
           <label className="Editor__mood-label">¿Cómo es tu día?</label>
           <div className="Editor__mood-inputs">
@@ -41,7 +41,7 @@ const Editor = props => {
                 value=":)"
                 name="mood"
                 onChange={handleChangeMood}
-                required
+                checked={selectedMood.mood === ':)'}
               />
               :)
             </label>
@@ -53,18 +53,20 @@ const Editor = props => {
                 value=":("
                 name="mood"
                 onChange={handleChangeMood}
-                required
+                checked={selectedMood.mood === ':('}
               />
               :(
             </label>
           </div>
         </fieldset>
-        {mood === ":)" ? (
+
+        {selectedMood.mood === ":)" ? (
           <fieldset className="Editor__message">
             <label className="Editor__message-label" htmlFor="message">
               Mensaje{" "}
               <span className="Editor__message-optional">(opcional)</span>
             </label>
+
             <input
               className="Editor__message-input input"
               type="text"
@@ -73,11 +75,13 @@ const Editor = props => {
               placeholder="¿Por qué es un buen día?"
               onChange={handleChangeMessage}
             />
+    
           </fieldset>
         ) : null}
+
         <fieldset className="Editor__action">
-          {!date || !mood ? (
-            <button className="Editor__action-btn save-btn">Guardar</button>
+          {selectedMood.errorMessage ? (
+            <p className="Editor__action-error">Esa fecha ya tiene un estado asignado. Elige otra fecha.</p>
           ) : (
             <Link to="/">
               <button

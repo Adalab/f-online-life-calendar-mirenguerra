@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 class Calendar extends React.Component {
   render() {
-    const { calendar, handleClearClick } = this.props;
+    const { savedMoods, handleClearClick } = this.props;
     return (
       <div className="Calendar">
         <div className="Calendar__wrapper">
@@ -15,20 +15,27 @@ class Calendar extends React.Component {
           </Link>
 
           <ul className="Calendar__list">
-            {calendar.map((item, i) => {
-              let faceStatus =
-                item[1].mood === ":)" ? "happy-face" : "sad-face";
-              return (
-                <div className="tooltip" key={i} >
-                  <li className={`Calendar__item ${faceStatus}`}>
-                    {item[1].mood}
-                  </li>
-                  <span className="tiptext">{`${item[0].date} ${
-                    item[2].message
-                  }`}</span>
-                </div>
-              );
-            })}
+            {savedMoods
+              .sort(function(a, b) {
+                if (a.date > b.date) {
+                  return 1;
+                } else {
+                  return -1;
+                }
+              })
+              .map((item, i) => {
+                let faceStatus = item.mood === ":)" ? "happy-face" : "sad-face";
+                return (
+                  <div className="tooltip" key={i}>
+                    <li className={`Calendar__item ${faceStatus}`}>
+                      {item.mood}
+                    </li>
+                    <span className="tiptext">{`${item.date} ${
+                      item.message
+                    }`}</span>
+                  </div>
+                );
+              })}
           </ul>
         </div>
       </div>
