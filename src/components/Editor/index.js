@@ -1,20 +1,16 @@
 import React from "react";
 import "./styles.scss";
 import { Link } from "react-router-dom";
-// import moment from 'moment';
 
 const Editor = props => {
   const {
     handleChangeDate,
     handleChangeMood,
-    mood,
-    date,
     handleChangeMessage,
     handleClearClick,
-    handleSubmitBtn
-    // selectedMood
+    handleSubmitBtn,
+    selectedMood
   } = props;
-  // let today = moment().format('YYYY-MM-DD')
 
   return (
     <form className="Editor">
@@ -23,31 +19,15 @@ const Editor = props => {
           <label className="Editor__dateInput-label" htmlFor="date">
             Fecha
           </label>
-          {/* {selectedMood ? (
-<input
-className="Editor__dateInput-input input"
-type="date"
-id="date"
-name="date"
-onChange={handleChangeDate}
-// min={today}
-// max={today}
-value={selectedMood.date}
-required
-/>
-) : ( */}
+    
           <input
             className="Editor__dateInput-input input"
             type="date"
             id="date"
             name="date"
             onChange={handleChangeDate}
-            // min={today}
-            // max={today}
-            disable="2019-06-06"
             required
           />
-          {/* )} */}
         </fieldset>
 
         <fieldset className="Editor__mood">
@@ -61,7 +41,7 @@ required
                 value=":)"
                 name="mood"
                 onChange={handleChangeMood}
-                required
+                checked={selectedMood.mood === ':)'}
               />
               :)
             </label>
@@ -73,29 +53,20 @@ required
                 value=":("
                 name="mood"
                 onChange={handleChangeMood}
-                required
+                checked={selectedMood.mood === ':('}
               />
               :(
             </label>
           </div>
         </fieldset>
 
-        {mood === ":)" ? (
+        {selectedMood.mood === ":)" ? (
           <fieldset className="Editor__message">
             <label className="Editor__message-label" htmlFor="message">
               Mensaje{" "}
               <span className="Editor__message-optional">(opcional)</span>
             </label>
-            {/* {selectedMood ? (
-<input
-className="Editor__message-input input"
-type="text"
-id="message"
-name="message"
-value={selectedMood.message}
-onChange={handleChangeMessage}
-/>
-) : ( */}
+
             <input
               className="Editor__message-input input"
               type="text"
@@ -104,13 +75,13 @@ onChange={handleChangeMessage}
               placeholder="¿Por qué es un buen día?"
               onChange={handleChangeMessage}
             />
-            {/* )} */}
+    
           </fieldset>
         ) : null}
 
         <fieldset className="Editor__action">
-          {!date || !mood ? (
-            <button className="Editor__action-btn save-btn">Guardar</button>
+          {selectedMood.errorMessage ? (
+            <p>Esa fecha ya tiene un estado asignado.</p>
           ) : (
             <Link to="/">
               <button

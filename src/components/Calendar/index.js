@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 class Calendar extends React.Component {
   render() {
-    const { calendar, handleClearClick } = this.props;
+    const { savedMoods, handleClearClick } = this.props;
     return (
       <div className="Calendar">
         <div className="Calendar__wrapper">
@@ -15,7 +15,7 @@ class Calendar extends React.Component {
           </Link>
 
           <ul className="Calendar__list">
-            {calendar.map((item, i) => {
+            {savedMoods.map((item, i) => {
               let faceStatus =
                 item.mood === ":)" ? "happy-face" : "sad-face";
               return (
